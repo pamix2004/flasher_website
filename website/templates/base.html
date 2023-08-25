@@ -14,6 +14,13 @@
     </head>
     <body>
 
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <h1>{{messages}}</h1>
+            <hr>
+            {% endif %}
+        {% endwith %}
+
         <nav>
             <ul>
                 <li><a href="/">Homepage</a></li>
@@ -22,7 +29,14 @@
             </ul>
         </nav>
 
+        <hr>
+
         <h1>Current Page:</h1>
         {% block current_page %} {%endblock%}
+
+        {% block content %}
+        {% endblock %}
+
+
     </body>
 </html>

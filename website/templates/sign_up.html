@@ -2,3 +2,20 @@
 {% block current_page %}
 <h1>Sign up</h1>
 {%endblock%}
+
+{% block content %}
+<form action="" method="post">
+
+    <label for="username">Username</label>
+    <input type="text" name="username" id=""required>
+
+    <label for="email">email</label>
+    <input type="email" name="email" id=""required>
+    <label for="password1">Password</label>
+    <input type="password" name="password1" id="" required>
+    <label for="password2">Confirm password</label>
+    <input type="password" name="password2" id=""required>
+
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
