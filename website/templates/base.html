@@ -26,7 +26,21 @@
                 <li><a href="/">Homepage</a></li>
                 <li><a href="/login">Login</a></li>
                 <li><a href="/sign_up">Sign Up</a></li>
+                <li><a href="/learning">Learning</a></li>
+                {% if g.username %}
+                    <li><a href="/logout">Logout</a></li>
+                {% endif %}
+                
             </ul>
+            <h3>Status:</h3>
+            <p>
+                {% if g.username %}
+                    Logged as: {{g.username}}
+                {% else %}
+                    Unlogged 
+                {% endif %}
+
+            </p>
         </nav>
 
         <hr>

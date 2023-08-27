@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,session,g
 from .extensions import db,mail
 import os
 
@@ -16,8 +16,8 @@ def create_app():
 
     app.config['MAIL_SERVER']='smtp.gmail.com'
     app.config['MAIL_PORT'] = 465
-    app.config['MAIL_USERNAME'] = os.environ.get("EMAIL_USERNAME")
-    app.config['MAIL_PASSWORD'] = os.environ.get("EMAIL_PASSWORD")
+    app.config['MAIL_USERNAME'] = os.environ.get("MAIL_USERNAME")
+    app.config['MAIL_PASSWORD'] = os.environ.get("MAIL_PASSWORD")
     app.config['MAIL_USE_TLS'] = False
     app.config['MAIL_USE_SSL'] = True
 
@@ -40,8 +40,18 @@ def create_app():
         db.create_all()
         mail.init_app(app)
 
+    @app.before_request
+    def before_request():
+        g.email = None
+        g.username = None
+        if "email" and "username" in session:
+            g.email = session["email"]
+            g.username = session["username"]
+            print("user is logged in")
+        else:
+            print("user is NOT logged in")
 
-
+        
 
 
     return app
