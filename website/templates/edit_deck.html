@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block current_page %}
+<h1>Editing Deck</h1>
+{%endblock%}
+
+{% block content %}
+    <form action="" method="post">
+        <label for="deck_name">Current Deck Name:</label>
+        <input name="deck_name" value="{{deck_to_be_edited.name}}"></input>
+        <br>
+        <button type="submit">Save Changes</button> 
+    </form>
+
+    <form action="/learning/delete_deck" method="post">
+        <input type="text" name="deck_id" value={{deck_to_be_edited.id}} hidden>
+        <button type="submit">Remove</button>
+    </form>
+    
+{% endblock %}

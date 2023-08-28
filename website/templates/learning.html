@@ -2,4 +2,41 @@
 {% block current_page %}
 <h1>Learning</h1>
 {%endblock%}
-gd
+
+{% block content %}
+    <div class="user_decks">
+        
+        {% if user_decks %}
+            <h1>User's decks</h1>
+            {% for deck in user_decks %}
+                <div class="deck">
+                    <h3>
+                        {{loop.index0+1}}.
+                        {{deck.name}}
+                        <form action="/learning/delete_deck" method="post">
+                            <input type="text" name="deck_id" value={{deck.id}} hidden>
+                            <button type="submit">Remove</button>
+                        </form>
+                        <a href="/learning/edit_deck_number/{{deck.id}}">Edit</a>
+                    </h3>
+                    
+                </div>
+            {% endfor %}
+        {% else %}
+            <h1>You don't have decks yet!</h1>
+        {% endif %}
+        
+    </div>
+
+    <hr>
+    <div class="create_new_deck">
+        <h1>Create New Flashcard</h1>
+        
+        <form class="new_flashcard_deck" method="post" action="/learning/create_deck">
+            <label for="name_deck">Deck Name:</label>
+            <input type="text" name="deck_name">
+            <button class="create_deck">Create Deck</button>
+        </form>
+
+    </div>
+{% endblock %}

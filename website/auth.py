@@ -94,6 +94,7 @@ def mail_confirmation(token):
 def sign_up():
 
     if request.method == "POST":
+    
         username = request.form.get("username")
         email = request.form.get("email")
         password1 = request.form.get("password1")
@@ -128,6 +129,8 @@ def sign_up():
 
             return "<h1>Now we need to verify your email, check your inbox!</h1>"
 
+    return render_template("sign_up.html")
+
 @auth.route("/logout")
 def logout():
     session.pop("email",None)
@@ -138,4 +141,4 @@ def logout():
     
         
     
-    return render_template("sign_up.html")
+    
